@@ -11,8 +11,10 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet" >
 
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+   
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -72,9 +74,48 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="main">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+              {{ session('success') }}
+            </div>
+        @endif
+          <div class="row" style='height: 92vh;'>
+            <div class="col-md-2 p-0">
+              <div class="card h-100">
+              <div class="card-header">タスク一覧</div>
+              <div class="card-body py-2 px-4">
+                <a class='d-block' href='/'>全て表示</a>
+       
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-2 p-0">
+              <div class="card h-100">
+              <div class="card-header">サブタスク</div>
+              <div class="card-body py-2 px-4">
+                <a class='d-block' href='/'>全て表示</a>
+       
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 p-0">
+              <div class="card h-100">
+
+                <div class="card-header d-flex">リスト作成<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
+                <div class="card-body p-2">
+      
+                </div>
+              </div>    
+            </div> <!-- col-md-3 -->
+            <div class="col-md-6 p-0">
+              @yield('content')
+            </div>
+          </div> <!-- row justify-content-center -->
         </main>
     </div>
+    @yield('footer')
 </body>
 </html>
