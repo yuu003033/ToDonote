@@ -85,17 +85,7 @@
               <div class="card h-100">
               <div class="card-header">タスク一覧</div>
               <div class="card-body py-2 px-4">
-                <a class='d-block' href='/'>全て表示</a>
-       
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-2 p-0">
-              <div class="card h-100">
-              <div class="card-header">サブタスク</div>
-              <div class="card-body py-2 px-4">
-                <a class='d-block' href='/'>全て表示</a>
+                <a class='d-block' href='/'>サブタスク</a>
        
                 </div>
               </div>
