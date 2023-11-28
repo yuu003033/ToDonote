@@ -6,11 +6,15 @@
     <div class="card w-100 p-0">
         <div class="card-header">新規タスク作成</div>
         <div class="card-body">
-            <form action="/store" method="POST">
+            <form method="POST" action="/store">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <div class="form-group">
-                    <textarea name="content" class="form-control" rows="10" placeholder="新規メモ"></textarea>
+                    <textarea name="content" class="form-control" rows="10" placeholder="新規タスク"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task">タグ</label>
+                    <input name='task' type="text" class="form-control" id="task" placeholder="タグを入力">
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">保存</button>
             </form>

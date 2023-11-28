@@ -85,7 +85,7 @@
               <div class="card h-100">
               <div class="card-header">タスク一覧</div>
               <div class="card-body py-2 px-4">
-                <a class='d-block' href='/'>サブタスク</a>
+                <a class='d-block' href='/'>全てのリスト</a>
        
                 </div>
               </div>
@@ -96,7 +96,9 @@
 
                 <div class="card-header d-flex">リスト作成<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
                 <div class="card-body p-2">
-      
+        @foreach($makelists as $makelist)
+                <a href="/edit/{{ $makelist['id'] }}" class='d-block'>{{ $makelist['content'] }}</a>
+        @endforeach
                 </div>
               </div>    
             </div> <!-- col-md-3 -->

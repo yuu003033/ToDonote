@@ -6,13 +6,19 @@
     <div class="card w-100 p-0">
         <div class="card-header">メモ編集</div>
         <div class="card-body">
-            <form action="{{ route('update', ['id' => $memo['id'] ]) }}" method="POST">
+            <form method='POST' action="{{ route('update',['id' => $makelist['id']]) }}">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user['id'] }}">
                 <div class="form-group">
-                    <textarea name="content" class="form-control" rows="10"></textarea>
+                    <textarea name="content" class="form-control" rows="10">{{ $makelist['content'] }}</textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">登録</button>
+                <div class="form-group">
+                    <select class='form-control' name='task_id'>
+            
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">更新
+                </button>
             </form>
         </div>
     
