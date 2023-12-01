@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('status')->defult(0);
             $table->timestamps();
-
         });
     }
 

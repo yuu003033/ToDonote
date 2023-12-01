@@ -45,7 +45,9 @@ class HomeController extends Controller
         // dd($data);
         // POSTされたデータをDB（memosテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
-        $task_id = Task::insertGetId(['name' => $data['task'], 'user_id' => $data['user_id']]);
+        $task_id = Task::insertGetId([
+            // 'content' => $data['content'], 
+        'name' => $data['task'], 'user_id' => $data['user_id'], 'status' => 1]);
         // dd($task_id);
 
         
