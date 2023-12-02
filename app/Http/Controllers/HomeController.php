@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // タスク一覧取得
-
+        // ログインしてるユーザー情報をviewに渡す
         $user = \Auth::user();
+        // タスク一覧取得
         $makelists = Task::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         // dd($makelists);
         return view('home', compact('user','makelists'));
