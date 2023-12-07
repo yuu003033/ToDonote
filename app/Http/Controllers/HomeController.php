@@ -42,17 +42,26 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        // dd($data);
-        // POSTされたデータをDB（memosテーブル）に挿入
+        dd($data);
+        // POSTされたデータをDB（makelistsテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
-        $task_id = Task::insertGetId([
-            // 'content' => $data['content'], 
-        'name' => $data['task'], 'user_id' => $data['user_id'], 'status' => 1]);
+        $exist_tag = Task::where('name', $data['task'])->where('user_id', $data['user_id'])->first();
+        // dd($exist_tag);
+        if( empty($exist_tag['id']) ){
+            $task_id = Task::insertGetId([
+                'content' => $data['content'], 
+                'name' => $data['task'], 
+                'user_id' => $data['user_id'], 
+                'task_id' => $task_id,
+                'status' => 1]);
+        }else{　
+            $task_id = $exist_tag['id'];
+        }
+       
         // dd($task_id);
 
-        
         // リダイレクト処理
-        return redirect()->route('home');
+        return redirect()->route('home' );
     }
     public function edit($id)
     {
@@ -61,13 +70,18 @@ class HomeController extends Controller
         // dd($makelist);
         $makelists = Task::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'DESC')->get();
 
-        return view('edit', compact('makelist', 'user', 'makelists'));
+        $tasks = Task::where('user_id', $user['id'])->get();
+        return view('edit', compact('makelist', 'user', 'makelists', 'tasks'));
     }
     public function update(Request $request, $id)
     {
         $inputs = $request->all();
         // dd($inputs);
-        Task::where('id', $id)->update(['content' => $inputs['content']]);
+
+       Task::where('id', $id)->update([
+            'content' => $inputs['content'], 
+            'task_id' => $inputs['task_id']
+        ]);
         return redirect()->route('home');
 
     }

@@ -14,7 +14,9 @@
                 </div>
                 <div class="form-group">
                     <select class='form-control' name='task_id'>
-            
+            @foreach($tasks as $task)
+                <option value="{{ $task['id'] }}" {{ $task['id'] == $makelist['task_id'] ?"selected" : "" }}>{{$task['name']}}</option>
+            @endforeach
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg">更新
