@@ -42,24 +42,18 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        dd($data);
+        // dd($data);
         // POSTされたデータをDB（makelistsテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
-        $exist_tag = Task::where('name', $data['task'])->where('user_id', $data['user_id'])->first();
-        // dd($exist_tag);
-        if( empty($exist_tag['id']) ){
-            $task_id = Task::insertGetId([
-                'content' => $data['content'], 
-                'name' => $data['task'], 
-                'user_id' => $data['user_id'], 
-                'task_id' => $task_id,
-                'status' => 1]);
-        }else{　
-            $task_id = $exist_tag['id'];
-        }
+       
+        $task_id = Task::insertGetId([
+            'content' => $data['content'], 
+            'name' => $data['task'], 
+            'user_id' => $data['user_id'], 
+            'task_id' => $task_id,
+            'status' => 1]);
        
         // dd($task_id);
-
         // リダイレクト処理
         return redirect()->route('home' );
     }
@@ -80,7 +74,7 @@ class HomeController extends Controller
 
        Task::where('id', $id)->update([
             'content' => $inputs['content'], 
-            'task_id' => $inputs['task_id']
+    //         'task_id' => $inputs['task_id']
         ]);
         return redirect()->route('home');
 
