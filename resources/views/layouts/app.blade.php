@@ -94,7 +94,7 @@
             <div class="col-md-4 p-0">
               <div class="card h-100">
 
-                <div class="card-header d-flex">リスト作成<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
+                <div class="card-header d-flex justify-content-between">リスト作成<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
                 <div class="card-body p-2">
         @foreach($makelists as $task)
                 <a href="/edit/{{ $task['id'] }}" class='d-block'>{{ $task['content'] }}</a>

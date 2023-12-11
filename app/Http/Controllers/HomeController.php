@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Makelist;
 use App\Models\Task;
+use App\Models\Sub_Task;
 
 class HomeController extends Controller
 {
@@ -30,7 +31,7 @@ class HomeController extends Controller
         // タスク一覧取得
         $makelists = Task::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'DESC')->get();
         // dd($makelists);
-        return view('home', compact('user','makelists'));
+        return view('create', compact('user','makelists'));
     }
 
     public function create()
@@ -46,11 +47,17 @@ class HomeController extends Controller
         // POSTされたデータをDB（makelistsテーブル）に挿入
         // MEMOモデルにDBへ保存する命令を出す
        
+        // $exist_tag = Task::where('name', $data['task'])->where('user_id', $data['user_id'])->first();
+        // if( empty($exist_tag['id'])){
+        //     $tag_id = Task::insertGetId(['name' =>$data['task'], 'user_id' =>$data['user_id']]);
+        // }else{
+        //     $tag_id = $exist_tag['id'];
+        // }
         $task_id = Task::insertGetId([
             'content' => $data['content'], 
             'name' => $data['task'], 
             'user_id' => $data['user_id'], 
-            'task_id' => $task_id,
+            // 'task_id' => $task_id,
             'status' => 1]);
        
         // dd($task_id);
@@ -64,7 +71,7 @@ class HomeController extends Controller
         // dd($makelist);
         $makelists = Task::where('user_id', $user['id'])->where('status', 1)->orderBy('updated_at', 'DESC')->get();
 
-        $tasks = Task::where('user_id', $user['id'])->get();
+        $sub_tasks = Sub_Task::where('user_id', $user['id'])->get();
         return view('edit', compact('makelist', 'user', 'makelists', 'tasks'));
     }
     public function update(Request $request, $id)
@@ -74,10 +81,18 @@ class HomeController extends Controller
 
        Task::where('id', $id)->update([
             'content' => $inputs['content'], 
-    //         'task_id' => $inputs['task_id']
+            // 'task_id' => $inputs['task_id']
         ]);
         return redirect()->route('home');
-
     }
+    public function delete(Request $request, $id)
+    {
+        $inputs = $request->all();
+        // dd($inputs);
 
+       Task::where('id', $id)->update([
+            'status' => 2]
+        );
+        return redirect()->route('home')->with('success', 'メモの削除が完了しました！');
+    }
 }

@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center ml-0 mr-0 h-100">
     <div class="card w-100 p-0">
-        <div class="card-header">新規タスク作成</div>
+        <div class="card-header">新規リスト作成</div>
         <div class="card-body">
             <form method="POST" action="/store">
                 @csrf
@@ -13,9 +13,9 @@
                     <textarea name="content" class="form-control" rows="10" placeholder="新規タスク"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="task">タグ</label>
-                    <input name='task' type="text" class="form-control" id="task" placeholder="タグを入力">
+                    <textarea for="task" name='task' type="text" class="form-control" id="task" placeholder="サブタスク"></textarea>
                 </div>
+
                 <button type="submit" class="btn btn-primary btn-lg">保存</button>
             </form>
         </div>

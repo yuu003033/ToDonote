@@ -4,7 +4,12 @@
 
 <div class="row justify-content-center ml-0 mr-0 h-100">
     <div class="card w-100 p-0">
-        <div class="card-header">メモ編集</div>
+        <div class="card-header d-flex justify-content-between">メモ編集
+            <form method='POST' action="/delete/{{$makelist['id']}}" id='delete-form'>
+                    @csrf
+                    <button class='p-0 mr-2' style='border:none;'><i id='delete-button' class="fas fa-trash"></i></button>
+            </form>  
+        </div>
         <div class="card-body">
             <form method='POST' action="{{ route('update',['id' => $makelist['id']]) }}">
                 @csrf
@@ -12,13 +17,13 @@
                 <div class="form-group">
                     <textarea name="content" class="form-control" rows="10">{{ $makelist['content'] }}</textarea>
                 </div>
-                <div class="form-group">
-                    <select class='form-control' name='task_id'>
-            @foreach($tasks as $task)
+                <!-- <div class="form-group"> -->
+                    <!-- <select class='form-control' name='task_id'> -->
+            <!-- @foreach($tasks as $task)
                 <option value="{{ $task['id'] }}" {{ $task['id'] == $makelist['task_id'] ?"selected" : "" }}>{{$task['name']}}</option>
-            @endforeach
-                    </select>
-                </div>
+            @endforeach -->
+                    <!-- </select> -->
+                <!-- </div> -->
                 <button type="submit" class="btn btn-primary btn-lg">更新
                 </button>
             </form>
