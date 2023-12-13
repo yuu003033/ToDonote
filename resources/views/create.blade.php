@@ -13,7 +13,7 @@
                     <textarea name="content" class="form-control" rows="10" placeholder="新規タスク"></textarea>
                 </div>
                 <div class="form-group">
-                    <textarea for="task" name='task' type="text" class="form-control" id="task" placeholder="サブタスク"></textarea>
+                   
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg">保存</button>
