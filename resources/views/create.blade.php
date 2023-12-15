@@ -12,10 +12,7 @@
                 <div class="form-group">
                     <textarea name="content" class="form-control" rows="10" placeholder="新規タスク"></textarea>
                 </div>
-                <div class="form-group">
-                   
-                </div>
-
+           
                 <button type="submit" class="btn btn-primary btn-lg">保存</button>
             </form>
         </div>
