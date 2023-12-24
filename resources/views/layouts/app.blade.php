@@ -81,26 +81,32 @@
             </div>
         @endif
           <div class="row" style='height: 92vh;'>
-            <div class="col-md-2 p-0">
+    
+            <div class="col-md-4 p-10">
               <div class="card h-100">
-              <div class="card-header">タスク一覧</div>
-              <div class="card-body py-2 px-4">
-                <a class='d-block' href='/'>全てのリスト</a>
-       
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 p-0">
-              <div class="card h-100">
-
-                <div class="card-header d-flex justify-content-between">リスト作成<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></div>
-                <div class="card-body p-2">
-        @foreach($makelists as $task)
-                <a href="/edit/{{ $task['id'] }}" class='d-block'>{{ $task['content'] }}</a>
+                <table class="card-header d-flex justify-content-between">
+                    <thead>
+                        <tr>
+                
+                            <th>リスト<a class='ml-auto' href='/create'><i class="fas fa-plus-circle"></i></a></th>
+                            <th>日付</th>
+                        </tr>   
+                    </thead>
+                </table>
+                <tbody class="card-body p-2">
+                
+        @foreach($makelists as $makelist)
+            <tr id="/edit/{{ $makelist['id'] }}" class="@if($makelist->complete_flaf == 1) bg-success @endif">
+                <!-- <a href="/edit/{{ $makelist['id'] }}" class='d-block'>{{ $makelist['content'] }}</a> -->
+                <td class="w-50"><a href="/edit/{{$makelist['id'] }}" class='d-block'><span class="body-area">{{$makelist['content']}}</span></a></td>
+                <td><span class="date-area">{{ $makelist->create_time }}</span></td>
+            </tr>
+              
         @endforeach
-                </div>
+                </tbody>
+            
               </div>    
+              
             </div> <!-- col-md-3 -->
             <div class="col-md-6 p-0">
               @yield('content')
